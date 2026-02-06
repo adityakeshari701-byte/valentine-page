@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For MY Valentine 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top,#ffb6d5,#ff5f9e,#ff025b);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* floating hearts & roses */
+.floats{
+  position:fixed;inset:0;pointer-events:none;z-index:1;
+}
+.float{
+  position:absolute;font-size:22px;
+  animation:float 5s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-10vh) scale(1.4);opacity:0}
+}
+
+.container{
+  width:90%;
+  max-width:430px;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(18px);
+  border-radius:30px;
+  padding:36px 26px;
+  text-align:center;
+  box-shadow:0 35px 100px rgb(255, 0, 221);
+  display:none;
+  animation:enter .6s ease;
+  z-index:2;
+  position:relative;
+}
+@keyframes enter{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.container.active{display:block}
+
+h1,h2{color:#ff145d}
+p{color:#333;margin:16px 0 24px}
+
+input{
+  width:100%;
+  padding:14px;
+  margin: 5px 0 5px;
+  border-radius:25px;
+  border:none;
+  outline:none;
+  text-align:center
+}
+
+button{
+  border:none;
+  padding:14px 32px;
+  border-radius:40px;
+  font-size:16px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.primary{
+  background:#ff0051;
+  color:#fff;
+  font-weight:600;
+  box-shadow:0 14px 30px rgba(255,20,93,.45)
+}
+.primary:hover{transform:scale(1.12)}
+
+.no{
+  background:#fff;
+  color:#ff145d;
+  position:absolute;
+  box-shadow:0 10px 20px rgba(0,0,0,.15)
+}
+.no:hover{
+  animation:shake .4s;
+}
+.buttons{position:relative;height:90px}
+
+/* 🌐 language toggle */
+.lang{
+  position:absolute;
+  top:12px;
+  right:16px;
+  background:#ffb3d2;
+  border-radius:20px;
+  font-size:12px;
+  padding:6px 12px;
+  cursor:pointer;
+  z-index:5;
+}
+
+.final-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+.final-options button{
+  background:#fff;
+  color:#ff145d;
+  font-weight:600
+}
+.final-options button.selected{
+  background:#ff145d;
+  color:#fff;
+  box-shadow:0 0 20px rgba(255,20,93,.6)
+}
+
+@keyframes shake{
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-5px)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="floats"></div>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="container active" id="p1">
+  <div class="lang" onclick="toggleLang()">EN</div>
+  <h1 id="t1">Ek Filmy Shuruaat 🎬 💋</h1>
+  <p id="d1">Apna pyaara sa Naam likho… kyunki kahani tabhi shuru hoti hai jab tum ho ✨💞</p>
+  <input id="nameInput" placeholder="Your Lovely Name ❤️">
+  <div class="buttons">
+    <button class="primary" onclick="next(1)" id="b1">Jaldi likho Babu 💘</button>
+    <button class="no" id="no1">Nahi 🙈</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="container" id="p2">
+  <h2 id="title2"></h2>
+  <p id="d2">Kya tum meri zindagi ki har subah aur har shaam banogi / banoge? 🌹</p>
+  <div class="buttons">
+    <button class="primary" onclick="next(2)">YES 💞</button>
+    <button class="no" id="no2">Ha bol do, plzzz👉👈</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="container" id="p3">
+  <h2>Mohabbat ka Waada 💕</h2>
+  <p>Kya tum mere saath har mod par chalogi / chaloge? ❤️</p>
+  <div class="buttons">
+    <button class="primary" onclick="next(3)">Always 💖</button>
+    <button class="no" id="no3">Mujhe ghumna nhi pasand 😶</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="container" id="p4">
+  <h2>Filmy Masti 🎥</h2>
+  <p>Agar main thoda filmy ho jaun, kya tum phir bhi mere saath rahogi / rahoge? 😄</p>
+  <div class="buttons">
+    <button class="primary" onclick="next(4)">Of Course 😍</button>
+    <button class="no" id="no4">Phone slipped 😶</button>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="container" id="p5">
+  <h2>Serious Sawaal 🥹</h2>
+  <p>Kya tum mere saath hassoge bhi aur rooge bhi? 💖</p>
+  <div class="buttons">
+    <button class="primary" onclick="next(5)">Promise 💍</button>
+    <button class="no" id="no5">Network issue 😵</button>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="container" id="p6">
+  <h1>Last Question 😏</h1>
+  <p>Agar main gussa ho jaun, tum kya karoge / karogi? 🤔</p>
+  <div class="final-options">
+    <button>Chocolate 🍫</button>
+    <button>Sorry 1000 baar 🙏</button>
+    <button>Drama 🎭</button>
+    <button>Hug 👩🏻‍❤️‍💋‍👨🏻 🤗</button>
+  </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="container" id="p7">
+  <h1>Ek Pyaari Si Chitthi, Mere Pyaar Ke Liye 💌</h1>
+  <p id="typeText" style="line-height:1.8;font-size:15px"></p>
+</div>
+
+<script>
+const pages=[p1,p2,p3,p4,p5,p6,p7];
+const floats=document.querySelector(".floats");
+const music=document.getElementById("music");
+const texts=["Soch lo 🥺","Dil se pooch lo ❤️","Dobara socho 😌","Are you sure? 🤨"];
+
+/* 🌐 language data */
+let lang="hi";
+function toggleLang(){
+  lang = lang==="hi"?"en":"hi";
+  document.querySelector(".lang").innerText = lang==="hi"?"EN":"HI";
+  t1.innerText = lang==="hi"?"Ek Filmy Shuruaat 🎬 💖":"A Filmy Beginning 🎬 💖";
+  d1.innerText = lang==="hi"
+    ?"Apna pyaara sa Naam likho… kyunki kahani tabhi shuru hoti hai jab tum ho ✨"
+    :"Write your lovely name… because the story begins with you ✨";
+  b1.innerText = lang==="hi"?"Jaldi likho Babu 💘":"Write it quickly, Baby 💘";
+}
+
+function next(i){
+  if(i===1){
+    const name=nameInput.value.trim();
+    if(!name) return;
+    title2.innerText=`${name}, ek sawaal hai 💕`;
+    music.play().catch(()=>{});
+  }
+  pages[i-1].classList.remove("active");
+  pages[i].classList.add("active");
+}
+
+/* 🚀 PAGE-1 NO BUTTON – FAST MOVE INSIDE CARD */
+no1.onclick=()=>{
+  const parent = p1;
+  const maxX = parent.clientWidth - no1.offsetWidth - 20;
+  const maxY = parent.clientHeight - no1.offsetHeight - 20;
+  no1.style.left = Math.random()*maxX + "px";
+  no1.style.top  = Math.random()*maxY + "px";
+};
+
+/* page 2 & 3 text change */
+no2.onclick=()=>no2.innerText=texts[Math.floor(Math.random()*texts.length)];
+no3.onclick=()=>no3.innerText=texts[Math.floor(Math.random()*texts.length)];
+
+/* page 4 */
+no4.onclick=()=>{
+  no4.style.transform="scale(0.6)";
+  no4.style.background="#e0e0e0";
+  no4.style.color="#777";
+};
+
+/* page 5 chaos */
+no5.onclick=()=>{
+  no5.style.transform="scale(.5)";
+  for(let i=0;i<25;i++){
+    const e=document.createElement("div");
+    e.innerText=Math.random()>0.5?"😠":"😭";
+    e.style.position="fixed";
+    e.style.left=Math.random()*100+"vw";
+    e.style.top=Math.random()*100+"vh";
+    e.style.fontSize="30px";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),2000);
+  }
+};
+
+/* page 6 → 7 */
+document.querySelectorAll(".final-options button").forEach(btn=>{
+  btn.onclick=()=>{
+    p6.classList.remove("active");
+    p7.classList.add("active");
+    typeWriter();
+  }
+});
+
+/* floating hearts */
+setInterval(()=>{
+  const f=document.createElement("div");
+  f.className="float";
+  f.innerText=["💖","💕","🌹","❤️","🥰"][Math.floor(Math.random()*5)];
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=Math.random()*2+4+"s";
+  floats.appendChild(f);
+  setTimeout(()=>f.remove(),5000);
+},250);
+
+/* typewriter */
+const letter=`🐻💖🐻
+Tum meri zindagi ka woh scene ho,
+jiske bina poori film adhuri lagti hai 🎬🥹
+
+Har muskaan, har khushi,
+bas tumse shuru hoti hai 🌹✨
+
+Dudu aur Bubu jaise,
+simple, silly, par hamesha saath 🧸💕
+
+I love you — aaj bhi, kal bhi, hamesha 💖`;
+
+let i=0;
+function typeWriter(){
+  if(i<letter.length){
+    typeText.innerHTML+=letter.charAt(i);
+    i++;
+    setTimeout(typeWriter,40);
+  }else{
+    const msg=encodeURIComponent(letter);
+    window.open(`https://wa.me/?text=${msg}`,"_blank");
+  }
+}
+</script>
+
+</body>
+</html>
